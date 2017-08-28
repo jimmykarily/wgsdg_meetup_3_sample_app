@@ -14,5 +14,10 @@ RUN echo 'export rvm_path="$HOME/.rvm"' >> /root/.rvmrc
 RUN curl -sSL https://get.rvm.io | bash -s stable
 RUN bash -l -c "rvm install 2.4.1"
 
+# Install bundler gem
+RUN bash -l -c "gem install bundler"
+
+WORKDIR /usr/src/app
+
 CMD ["/bin/bash", "-l"]
 ENTRYPOINT ["/bin/bash", "-l", "-c"]
