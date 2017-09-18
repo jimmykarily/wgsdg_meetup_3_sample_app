@@ -17,6 +17,10 @@ RUN bash -l -c "rvm install 2.4.1"
 # Install bundler gem
 RUN bash -l -c "gem install bundler"
 
+# TODO: Move this to the top of the file (with the rest of the packages)
+# when your are done editing.
+RUN zypper --non-interactive in postgresql-devel
+
 WORKDIR /usr/src/app
 
 CMD ["/bin/bash", "-l"]

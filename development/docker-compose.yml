@@ -10,3 +10,15 @@ services:
       - ../.env
     ports:
       - "3000:3000"
+    depends_on:
+      - postgres
+    links:
+      - postgres
+  postgres:
+    image: postgres:9.5
+    container_name: wgsdg-postgres
+    environment:
+      POSTGRES_USER: wgsdg
+      POSTGRES_PASSWORD: wgsdg
+    expose:
+      - "5432"
