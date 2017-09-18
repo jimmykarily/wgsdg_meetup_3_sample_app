@@ -8,6 +8,8 @@ Bundler.require(*Rails.groups)
 
 module App
   class Application < Rails::Application
+    cattr_accessor :redis
+
     # Initialize configuration defaults for originally generated Rails version.
     config.load_defaults 5.1
 

@@ -14,6 +14,9 @@ services:
       - postgres
     links:
       - postgres
+      - redis
+    environment:
+      REDIS_URL: redis://redis:6379
   postgres:
     image: postgres:9.5
     container_name: wgsdg-postgres
@@ -22,3 +25,6 @@ services:
       POSTGRES_PASSWORD: wgsdg
     expose:
       - "5432"
+  redis:
+    image: redis:3.0
+    container_name: wgsdg-redis
