@@ -12,6 +12,23 @@ services:
       - "3000:3000"
     depends_on:
       - postgres
+      - redis
+    links:
+      - postgres
+      - redis
+    environment:
+      REDIS_URL: redis://redis:6379
+  background_worker:
+    image: wgsdg
+    command: "'bundle exec sidekiq'"
+    container_name: wgsdg-background-workers
+    volumes:
+      - $PWD/..:/usr/src/app
+    env_file:
+      - ../.env
+    depends_on:
+      - postgres
+      - redis
     links:
       - postgres
       - redis
