@@ -1,0 +1,4 @@
+#!/bin/bash
+
+COMMAND='rvm 2.4.1 do '$@
+docker exec -it wgsdg-rails bash -l -c "$COMMAND"
