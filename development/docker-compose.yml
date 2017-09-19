@@ -34,6 +34,23 @@ services:
       - redis
     environment:
       REDIS_URL: redis://redis:6379
+  autotest:
+    image: wgsdg
+    command: "'bundle exec autotest'"
+    container_name: wgsdg-autotest
+    volumes:
+      - $PWD/..:/usr/src/app
+    env_file:
+      - ../.env
+    depends_on:
+      - postgres
+      - redis
+    links:
+      - postgres
+      - redis
+    environment:
+      REDIS_URL: redis://redis:6379
+      RAILS_ENV: test
   postgres:
     image: postgres:9.5
     container_name: wgsdg-postgres
